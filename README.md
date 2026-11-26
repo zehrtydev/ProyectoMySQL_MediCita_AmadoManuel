@@ -203,24 +203,24 @@ La descompuse en `doctor_specialties (doctor_id, specialty_id)` y `doctor_branch
 
 ## 5. Diagramas
 
-### 5.1 Diagrama entidad-relación (hecho a mano)
+### 5.1 Diagrama entidad-relación
 
 `diagramas/00_diagrama_er.jpg`
 
-![Diagrama ER a mano](diagramas/00_diagrama_er.jpg)
+![Diagrama entidad-relación](diagramas/00_diagrama_er.jpg)
 
 ### 5.2 Diagrama lógico (ingeniería inversa)
 
-`diagramas/00_diagrama_logico.png`. Lo generé con MySQL Workbench (*Database → Reverse Engineer*, esquema `medicita_ips`) después de ejecutar `01_ddl.sql`, y lo exporté con *File → Export → Export as PNG*.
+`diagramas/00_diagrama_logico.png`. Se obtuvo por ingeniería inversa del esquema `medicita_ips` ya creado (después de ejecutar `01_ddl.sql`): muestra cada tabla con sus columnas, tipos, claves (PK, FK, UQ), columnas generadas, índices y relaciones.
 
 ![Diagrama lógico](diagramas/00_diagrama_logico.png)
 
 ### 5.3 Diferencias entre ambos diagramas
 
-Los dos diagramas tienen las mismas 43 entidades y relaciones. El lógico muestra detalles de implementación que no son atributos del negocio y por eso no aparecen en el diagrama a mano:
+Los dos diagramas tienen las mismas 43 entidades y relaciones. El lógico muestra detalles de implementación que no son atributos del negocio y por eso no aparecen en el diagrama entidad-relación:
 
 - **Columnas generadas `primary_guard` y `active_guard`** (en `patient_phones`, `encounter_diagnoses` y `affiliations`). Existen solo para que un `UNIQUE` haga cumplir "uno solo principal" y "una sola activa".
-- **`appointments` se relaciona con `doctor_specialties`** (FK compuesta `doctor_id, specialty_id`) además de con `specialties`. En el diagrama a mano la cita se dibuja con un médico y una especialidad; en el lógico se ve que esa pareja debe existir en la tabla puente.
+- **`appointments` se relaciona con `doctor_specialties`** (FK compuesta `doctor_id, specialty_id`) además de con `specialties`. En el diagrama entidad-relación la cita se dibuja con un médico y una especialidad; en el lógico se ve que esa pareja debe existir en la tabla puente.
 - **`invoice_items.line_total`** es una columna generada (`quantity * unit_price`).
 - Los **índices** `idx_appointments_*` aparecen en el lógico y no en el conceptual.
 
@@ -328,7 +328,7 @@ Cada usuario tiene su rol como rol por defecto (`SET DEFAULT ROLE`), para que qu
 
 ## 9. Evidencias
 
-Capturas tomadas en MySQL Workbench después de ejecutar los scripts en orden.
+Capturas de la ejecución de los scripts, en orden, sobre MySQL 8.0.
 
 ### Consulta 9 · Agenda del martes 1 de diciembre (JOIN de seis tablas)
 

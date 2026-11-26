@@ -88,7 +88,7 @@ LIMIT 5;
 -- =====================================================================
 
 -- Q9. Negocio: agenda del martes 1 de diciembre.
--- Técnica: INNER JOIN de cinco tablas. Se excluyen las canceladas
+-- Técnica: INNER JOIN de seis tablas. Se excluyen las canceladas
 -- porque ya no ocupan la agenda.
 SELECT TIME(a.start_at) AS hora,
        CONCAT(p.first_name, ' ', p.last_name) AS paciente,
